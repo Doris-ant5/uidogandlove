@@ -1,6 +1,17 @@
 import React from 'react';
 
 const MainMenu = ({ brand }) => {
+
+    const links = [
+
+        { label: "AllDogs", url: "#alldogs" },
+
+    ];
+
+
+
+
+
     return (
 
         <div className="list-group">

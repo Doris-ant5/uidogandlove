@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Header = ({ brand }) => {
+const AllDogs = ({ brand }) => {
     return (
         <div className="dogimage " >
 
@@ -9,7 +9,6 @@ const Header = ({ brand }) => {
 
         </div>
 
-
     )
 }
-export default Header;
+export default AllDogs;

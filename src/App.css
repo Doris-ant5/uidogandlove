@@ -68,3 +68,7 @@
   border: none;
 }
 
+.dogimage {
+  display: flex;
+  justify-content: center;
+}
