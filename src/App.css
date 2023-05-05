@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 20px;
 }
 
 .App-logo {
@@ -36,3 +37,34 @@
     transform: rotate(360deg);
   }
 }
+
+.list-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.list-group-item {
+  font-family: "Calibri Light";
+  font-size: 25px;
+  text-transform: uppercase;
+  color: #737373;
+  border: none;
+
+}
+
+.list-group-item:hover {
+  background-color: #FFECEC;
+
+}
+
+
+.list-group-item2 {
+  font-family: "Calibri Light";
+  font-size: 25px;
+  margin-top: 60px;
+  text-transform: uppercase;
+  border: none;
+}
+
