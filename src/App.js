@@ -2,8 +2,9 @@
 import './App.css';
 import MainMenu from './components/MainMenu';
 import{BrowserRouter as Router, Routes, Route } from"react-router-dom";
-import MainImage from "./components/MainImage";
+import MainImage from "./components/Header";
 import AllDogs from "./components/AllDogs";
+import Header from "./components/Header";
 
 
 
@@ -11,11 +12,11 @@ function App() {
     return (
         <Router>
             <div className="container">
-                <MainImage  />
-                <MainMenu brand="Dog and Love"  />
+
+                <Header  />
                 <Routes>
-                    <Route path="/"  />
-                    <Route path="/alldogs" element={<AllDogs />} />/>
+                    <Route path="/" element={<MainMenu />} />
+                    <Route path="/alldogs" element={<AllDogs />} />
                 </Routes>
             </div>
         </Router>

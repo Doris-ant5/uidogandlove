@@ -1,11 +1,15 @@
 import React from 'react';
+import MainImage from "./Header";
 
 const MainMenu = ({ brand }) => {
 
     const links = [
 
-        { label: "AllDogs", url: "#alldogs" },
-
+        { label: "See all dogs", url: "/alldogs" },
+        { label: "Add", url: "/adddog"},
+        { label: "Update", url: "/updatedog"},
+        { label: "Delete", url: "/deletedog"},
+        { label: "Log out", url: "/logout"},
     ];
 
 
@@ -13,17 +17,19 @@ const MainMenu = ({ brand }) => {
 
 
     return (
+       <div>
+
+
 
         <div className="list-group">
-            <button type="button" className="list-group-item list-group-item-action active" aria-current="true">
-                See all dogs
-            </button>
-            <button type="button" className="list-group-item list-group-item-action">Add</button>
-            <button type="button" className="list-group-item list-group-item-action">Update</button>
-            <button type="button" className="list-group-item list-group-item-action">Delete</button>
-            <button type="button" className="list-group-item2 list-group-item-action" disabled>Log out
-            </button>
+                {links.map(link => (
+                    <button onClick={()=>{window.location.href=link.url} } type="button" className="list-group-item list-group-item-action">{link.label}</button>
+
+                ))}
+
         </div>
+
+       </div>
 
     )
 }

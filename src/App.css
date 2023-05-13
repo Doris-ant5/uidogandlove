@@ -72,3 +72,25 @@
   display: flex;
   justify-content: center;
 }
+
+table {
+  font-family: "Calibri Light";
+  font-size: 18px;
+  margin: 20px;
+  padding: 5px;
+
+}
+
+td, th {
+  border: 1px solid #737373;
+  padding: 5px;
+}
+
+th {
+  background-color: lightgrey;
+}
+
+tr:hover {
+  background-color: #FFECEC;
+  cursor: pointer;
+}
