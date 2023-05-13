@@ -1,7 +1,9 @@
 import React from "react";
 
 const Dog = ({ dog }) => {
+
     return (
+
         <tr>
             <td>{dog.id}</td>
             <td>{dog.identifierTag}</td>

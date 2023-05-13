@@ -44,7 +44,6 @@ const AllDogs = ({ brand }) => {
                 </thead>
                 <tbody>
                 {dogs.map((dog) => (
-
                     <Dog key={dog.id} dog={dog} />
                 ))}
                 </tbody>
