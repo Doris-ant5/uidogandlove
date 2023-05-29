@@ -20,7 +20,7 @@ const AllDogs = ({ brand }) => {
 
     return (
         <div>
-            <h1>All Dogs</h1>
+            <h2>View of all Dogs</h2>
             <table>
                 <thead>
                 <tr>
@@ -34,7 +34,7 @@ const AllDogs = ({ brand }) => {
                     <th>Vax</th>
                     <th>Chip</th>
                     <th>Description</th>
-                    <th>Images</th>
+                    {/*<th>Images</th>*/}
                     <th>Birth date</th>
                     <th>Races</th>
                     <th>Health</th>

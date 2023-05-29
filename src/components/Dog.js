@@ -4,7 +4,7 @@ const Dog = ({ dog }) => {
 
     return (
 
-        <tr>
+        <tr onClick={()=>{window.location.href=`/dog/${dog.id}`}} >
             <td>{dog.id}</td>
             <td>{dog.identifierTag}</td>
             <td>{dog.name}</td>
@@ -15,7 +15,7 @@ const Dog = ({ dog }) => {
             <td>{dog.vax ? "TRUE" : "FALSE"}</td>
             <td>{dog.chip ? "TRUE" : "FALSE"}</td>
             <td>{dog.description}</td>
-            <td>{dog.images}</td>
+            {/*<td>{dog.images}</td>*/}
             <td>{dog.birthDate}</td>
             <td>{dog.raceDog.join(", ")}</td>
             <td>{dog.healthDog.join(", ")}</td>
