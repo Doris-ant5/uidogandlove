@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from 'react';
+import ImageUploadForm from "./ImageUploadForm";
 
 class AddDog extends Component {
     state = {
@@ -12,19 +13,37 @@ class AddDog extends Component {
         vax: "",
         chip: "",
         description: "",
-        animalImages: "",
+        animalImages: [],
         birthDate: "",
         raceDog: "",
         healthDog: "",
         personalitiesDog: "",
         needmentsDog: "",
 
-        errors: {}
+        errors: {},
+        successMessage: "" // Dodany stan dla komunikatu o sukcesie
     }
 
     onHandleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
+
+    onCastrationChange = (e) => {
+        const value = e.target.value === "true";
+        this.setState({ castration: value });
+    }
+
+    onVaxChange = (e) => {
+        const value = e.target.value === "true";
+        this.setState({ vax: value });
+    }
+
+    onChipChange = (e) => {
+        const value = e.target.value === "true";
+        this.setState({ chip: value });
+    }
+
+
 
 
     onHandleRaceDogChange = (e) => {
@@ -106,45 +125,168 @@ class AddDog extends Component {
     };
 
     onHandleSubmit = (e) => {
+
+
         e.preventDefault()
-        const { identifierTag, name, sex, dateRegistration, size, castration, vax, chip,
+
+
+        const {
+
+            identifierTag, name, sex, dateRegistration, size, castration, vax, chip,
             description, animalImages, birthDate, raceDog, healthDog, personalitiesDog,
             needmentsDog
-
-
 
         } = this.state
 
 
-
+        var isValid = true;
 
         //validation
         if (identifierTag === "") {
-            this.setState({ errors: { name: "*Name is required." } })
-            return;
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    identifierTag: '*Tag is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
         }
 
         if (name === "") {
-            this.setState({ errors: { email: "*Email is required." } })
-            return;
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    name: '*Name is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
         }
 
-        if (sex === "") {
-            this.setState({ errors: { phone: "*Phone is required." } })
-            return;
+
+      if (sex === "") {
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    sex: '*Sex is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
         }
 
-        if (dateRegistration === "") {
-            this.setState({ errors: { phone: "*Phone is required." } })
-            return;
+       if (dateRegistration === "") {
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    dateRegistration: '*Date registration is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
         }
 
         if (size === "") {
-            this.setState({ errors: { phone: "*Phone is required." } })
-            return;
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    size: '*Size is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
+        }
+
+        if (castration === "") {
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    castration: '*Castration is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
+        }
+
+        if (vax === "") {
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    vax: '*Vax is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
+        }
+
+        if (chip === "") {
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    chip: '*Chip is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
+        }
+
+        if (description === "") {
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    description: '*Description is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
+        }
+
+        if (birthDate === "") {
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    birthDate: '*Birth day is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
+        }
+
+        if (raceDog === "") {
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    raceDog: '*Race/s is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
+        }
+
+        if (healthDog === "") {
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    healthDog: '*Health is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
+        }
+
+        if (personalitiesDog === "") {
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    personalitiesDog: '*Personalities is required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
+        }
+
+        if (needmentsDog === "") {
+            this.setState(prevState => ({
+                errors: {                   // object that we want to update
+                    ...prevState.errors,    // keep all other key-value pairs
+                    needmentsDog: '*Needment/s are required.'       // update the value of specific key
+                }
+            }))
+            isValid = false;
         }
 
 
+        if (!isValid) {
+            return;
+        }
 
         const newDog = {
 
@@ -169,15 +311,8 @@ class AddDog extends Component {
         // send new to the backend
         axios.post("http://localhost:8077/api/v1/dogs", newDog)
 
-            .then(response => {
-                // Obsługa sukcesu - wykonuje się, gdy backend zwróci odpowiedź sukcesu (status 2xx)
-                console.log(response.data); // Wyświetl dane zwrócone przez backend
-                // Dodatkowe operacje, które chcesz wykonać po sukcesie, np. zaktualizowanie stanu komponentu, wyświetlenie komunikatu, itp.
-            })
-            .catch(error => {
-                // Obsługa błędu - wykonuje się, gdy wystąpi błąd w zapytaniu lub backend zwróci błąd (status inny niż 2xx)
-                console.log(error.response); // Wyświetl obiekt błędu zwrócony przez backend lub informacje o błędzie związane z zapytaniem
-            });
+            .then(() => {
+                // Zresetuj formularz i wyświetl komunikat o sukcesie
 
         this.setState({
             identifierTag: "",
@@ -196,10 +331,17 @@ class AddDog extends Component {
             personalitiesDog: "",
             needmentsDog: "",
 
-            errors: {}
+            errors: {},
+            successMessage: "Piesek został pomyślnie dodany do bazy danych!"
 
-        })
+        });
+            })
+            .catch(error => {
+                console.error(error);
+                // Obsługa błędu, np. wyświetlenie komunikatu o niepowodzeniu
+            });
     }
+
 
 
 
@@ -225,7 +367,8 @@ class AddDog extends Component {
             showRaceDogList,
             showHealthDogList,
             showPersonalitiesDogList,
-            showNeedmentsDogList
+            showNeedmentsDogList,
+            successMessage
 
 
         } = this.state
@@ -237,7 +380,8 @@ class AddDog extends Component {
                     <h2>Please fill out the new dog registration form</h2>
                 </div>
                 <div className='card-body'>
-                    <form onSubmit={this.onHandleSubmit}>
+
+                    <form onSubmit={this.onHandleSubmit} action="#">
                         <div>
                             <label>Identifier tag:</label>
                             <input
@@ -245,9 +389,8 @@ class AddDog extends Component {
                                 name="identifierTag"
                                 value={identifierTag}
                                 onChange={this.onHandleChange}
-                                error={errors.identifierTag}
                                 />
-
+                            <div className="errorRequired">{errors.identifierTag}</div>
                         <div>
                             <label>Name:</label>
                             <input
@@ -255,8 +398,8 @@ class AddDog extends Component {
                                 name="name"
                                 value={name}
                                 onChange={this.onHandleChange}
-                                error={errors.name}
                             />
+                            <div className="errorRequired">{errors.name}</div>
                         </div>
                             <div>
                                 <label>Sex:</label>
@@ -264,21 +407,23 @@ class AddDog extends Component {
                                     name="sex"
                                     value={sex}
                                     onChange={this.onHandleChange}
-                                    error={errors.sex}
                                 >
+                                    <option value="">Select option</option>
                                     <option value="MALE">Male</option>
                                     <option value="FEMALE">Female</option>
                                 </select>
+                                <div className="errorRequired">{errors.sex}</div>
                             </div>
-                            {/*<div>
+                            <div>
                                 <label>Date registration:</label>
                                 <input
                                     type="date"
                                     name="dateRegistration"
                                     value={dateRegistration}
                                     onChange={this.onHandleChange}
-                                    error={errors.dateRegistration}
+
                                 />
+                                <div className="errorRequired">{errors.dateRegistration}</div>
                             </div>
                             <div>
                                 <label>Size:</label>
@@ -286,48 +431,54 @@ class AddDog extends Component {
                                     name="size"
                                     value={size}
                                     onChange={this.onHandleChange}
-                                    error={errors.size}
                                 >
-                                    <option value="small">Small</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="large">Large</option>
+                                    <option value="">Select option</option>
+                                    <option value="SMALL">Small</option>
+                                    <option value="MEDIUM">Medium</option>
+                                    <option value="LARGE">Large</option>
                                 </select>
+                                <div className="errorRequired">{errors.size}</div>
                             </div>
                             <div>
                                 <label>Castration:</label>
                                 <select
                                     name="castration"
-                                    value={castration}
-                                    onChange={this.onHandleChange}
+                                    value={castration.toString()}
+                                    onChange={this.onCastrationChange}
                                     error={errors.castration}
                                 >
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
+                                    <option value="">Select option</option>
+                                    <option value="true">True</option>
+                                    <option value="false">False</option>
                                 </select>
+                                <div className="errorRequired">{errors.castration}</div>
                             </div>
                             <div>
                                 <label>Vax:</label>
                                 <select
                                     name="vax"
-                                    value={vax}
-                                    onChange={this.onHandleChange}
-                                    error={errors.vax}
+                                    value={vax.toString()}
+                                    onChange={this.onVaxChange}
                                 >
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
+                                    <option value="">Select option</option>
+                                    <option value="true">True</option>
+                                    <option value="false">False</option>
                                 </select>
+                                <div className="errorRequired">{errors.vax}</div>
                             </div>
                             <div>
                                 <label>Chip:</label>
                                 <select
                                     name="chip"
-                                    value={chip}
-                                    onChange={this.onHandleChange}
+                                    value={chip.toString()}
+                                    onChange={this.onChipChange}
                                     error={errors.chip}
                                 >
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
+                                    <option value="">Select option</option>
+                                    <option value="true">True</option>
+                                    <option value="false">False</option>
                                 </select>
+                                <div className="errorRequired">{errors.chip}</div>
                             </div>
                             <div>
                                 <label>Description:</label>
@@ -336,20 +487,8 @@ class AddDog extends Component {
                                     name="description"
                                     value={description}
                                     onChange={this.onHandleChange}
-                                    error={errors.description}
                                 />
-                            </div>
-                            <div>
-                                <label>Add images:</label>
-                                <input
-                                    type="file"
-                                    name="animalImages"
-                                    value={animalImages}
-                                    accept="image/*"
-                                    onChange={this.onHandleChange}
-                                    error={errors.animalImages}
-                                    placeholder="Select a file"
-                                />
+                                <div className="errorRequired">{errors.description}</div>
                             </div>
                             <div>
                                 <label>Birth Date:</label>
@@ -360,11 +499,13 @@ class AddDog extends Component {
                                     onChange={this.onHandleChange}
                                     error={errors.birthDate}
                                 />
+                                <div className="errorRequired">{errors.birthDate}</div>
                             </div>
                             <div className="checkbox-container">
                                 <div>
                                     <label>Race dog:</label>
                                     <div>
+                                        <div className="errorRequired">{errors.raceDog}</div>
                                         <button className="select" type="button" onClick={this.toggleRaceDogList}>
                                             Select race
                                         </button>
@@ -372,7 +513,9 @@ class AddDog extends Component {
                                     {showRaceDogList && (
                                         <div>
                                             <div>
+
                                                 <label className="elementLabel">
+
                                                 <input
                                                     type="checkbox"
                                                     name="raceDog"
@@ -609,6 +752,7 @@ class AddDog extends Component {
                             <div className="checkbox-container">
                                 <div>
                                     <label>Health dog:</label>
+                                    <div className="errorRequired">{errors.healthDog}</div>
                                     <div>
                                         <button className="select" type="button" onClick={this.toggleHealthDogList}>
                                             Select health
@@ -687,6 +831,7 @@ class AddDog extends Component {
                             <div className="checkbox-container">
                                 <div>
                                     <label>Personalities dog:</label>
+                                    <div className="errorRequired">{errors.personalitiesDog}</div>
                                     <div>
                                         <button className="select" type="button" onClick={this.togglePersonalitiesDogList}>
                                             Select personalities
@@ -956,6 +1101,7 @@ class AddDog extends Component {
                             <div className="checkbox-container">
                                 <div>
                                     <label>Needments dog:</label>
+                                    <div className="errorRequired">{errors.needmentsDog}</div>
                                     <div>
                                         <button className="select" type="button" onClick={this.toggleNeedmentsDogList}>
                                             Select needments
@@ -1126,18 +1272,35 @@ class AddDog extends Component {
                                         </div>
                                     )}
                                 </div>
-                            </div>*/}
+                            </div>
 
                         </div>
 
+
+
+
+
+
+                        <ImageUploadForm />
                         <button type="submit" className="register"  >
                             Add new dog
                         </button>
+                        <div className="messageSuccess">
+                        {successMessage && <div className="successMessage">{successMessage}</div>}
+                        </div>
                     </form>
+
+
+
+
+
                 </div>
             </div>
 
         )
     }
+
+
+
 }
 export default AddDog
